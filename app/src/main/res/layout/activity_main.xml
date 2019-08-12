@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/swipeRefresh"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:background="@drawable/gradient_bg">
+
+    <TextView
+        android:id="@+id/showTwoD"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2D"
+        android:textSize="80sp"
+        android:textColor="#636FA4"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/detailLayout"
+        android:layout_marginBottom="100dp"
+        />
+
+    <TextView
+        android:id="@+id/showDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Date"
+        android:textSize="25sp"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/detailLayout"
+        android:layout_marginBottom="60dp"
+        />
+
+    <DigitalClock
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        android:layout_above="@+id/detailLayout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="25dp"/>
+
+    <LinearLayout
+        android:id="@+id/detailLayout"
+        android:layout_width="300dp"
+        android:layout_height="120dp"
+        android:background="@drawable/container"
+        android:layout_centerInParent="true"
+        android:gravity="top|center"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SET Information"
+            android:textColor="#FFF"
+            android:padding="10sp"
+            android:layout_marginBottom="10dp"/>
+        <TableRow
+            android:id="@+id/tbRow2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            >
+
+        <Button
+            android:id="@+id/showSet"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:text="SET"
+            android:textColor="#fafafa"
+            android:textAllCaps="false"
+            android:background="@drawable/button_bg"
+            android:layout_marginRight="7sp"/>
+        <Button
+            android:id="@+id/showSetValue"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:textColor="#fafafa"
+            android:text="SET Value"
+            android:textAllCaps="false"
+            android:background="@drawable/button_bg"/>
+        </TableRow>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/tbLayout"
+        android:layout_width="260dp"
+        android:layout_height="127dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/tb_layout_bg"
+        android:layout_below="@+id/detailLayout">
+        <TableLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TableRow
+                android:id="@+id/row1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:collapseColumns="0">
+
+                <!-- Add elements/columns in the first row-->
+                <Button
+                    android:id="@+id/tvToday2D"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/tb_layout_btn_bg"
+                    android:text="Today"
+                    android:layout_marginLeft="10dp"
+                    android:textAllCaps="false"
+                    android:textColor="#fafafa" />
+
+                <Button
+                    android:id="@+id/showToday2DValue"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/tb_layout_btn_bg"
+                    android:text="2D"
+                    android:layout_marginLeft="10dp"
+                    android:textAllCaps="false"
+                    android:textColor="#fafafa" />
+
+            </TableRow>
+            <TableRow
+                android:id="@+id/row2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:collapseColumns="0">
+
+                <!-- Add elements/columns in the first row-->
+                <Button
+                    android:id="@+id/tvYesterday2D"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/tb_layout_btn_bg"
+                    android:text="Yesterday"
+                    android:layout_marginLeft="10dp"
+                    android:textAllCaps="false"
+                    android:textColor="#fafafa" />
+
+                <Button
+                    android:id="@+id/showYesterday2DValue"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/tb_layout_btn_bg"
+                    android:text="2D"
+                    android:layout_marginLeft="10dp"
+                    android:textAllCaps="false"
+                    android:textColor="#fafafa" />
+
+            </TableRow>
+        </TableLayout>
+    </LinearLayout>
+
+    <com.google.android.gms.ads.AdView
+        xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        ads:adSize="BANNER"
+        ads:adUnitId="ca-app-pub-9687700655895649/6590070330"
+        />
+
+</RelativeLayout>
+</android.support.v4.widget.SwipeRefreshLayout>
+
