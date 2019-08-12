@@ -103,4 +103,48 @@
         </TableRow>
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="260dp"
+        android:layout_height="150dp"
+        android:layout_below="@id/detailLayout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/container">
+
+        <TableLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TableRow
+                android:id="@+id/row1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:collapseColumns="0">
+
+                <!-- Add elements/columns in the first row-->
+                <Button
+                    android:id="@+id/tvYesterday2D"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/button_bg"
+                    android:text="Yesterday"
+                    android:layout_marginLeft="10dp"
+                    android:textAllCaps="false"
+                    android:textColor="#fafafa" />
+
+                <Button
+                    android:id="@+id/showYesterday2DValue"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/button_bg"
+                    android:text="2D"
+                    android:layout_marginLeft="10dp"
+                    android:textAllCaps="false"
+                    android:textColor="#fafafa" />
+
+            </TableRow>
+        </TableLayout>
+
+    </LinearLayout>
+
 </RelativeLayout>

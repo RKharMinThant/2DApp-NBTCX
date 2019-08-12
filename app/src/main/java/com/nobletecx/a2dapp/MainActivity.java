@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         showDate = findViewById(R.id.showDate);
 
         Calendar calendar = Calendar.getInstance();
-        String[] days = new String[] { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
+        String[] days = new String[] { "Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday" };
         String day = days[calendar.get(Calendar.DAY_OF_WEEK)];
 
         showDate.setText(day);
