@@ -35,8 +35,6 @@ public class MainActivity extends AppCompatActivity {
     Button showSet;
     Button showSetValue;
     Button showToday2DValue,showYesterday2DValue;
-    Button refresh;
-    ProgressBar pg;
     SwipeRefreshLayout mySwipeRefreshLayout;
     AdView myAdView;
 
