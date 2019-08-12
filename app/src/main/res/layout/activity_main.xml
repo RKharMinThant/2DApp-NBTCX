@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".MainActivity"
     android:background="@drawable/gradient_bg">
 
@@ -40,7 +41,7 @@
     <LinearLayout
         android:id="@+id/detailLayout"
         android:layout_width="300dp"
-        android:layout_height="140dp"
+        android:layout_height="120dp"
         android:background="@drawable/container"
         android:layout_centerInParent="true"
         android:gravity="top|center"
@@ -49,43 +50,20 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Set Information"
+            android:text="SET Information"
             android:textColor="#FFF"
             android:padding="10sp"
             android:layout_marginBottom="10dp"/>
         <TableRow
-            android:id="@+id/tbRow1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            >
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Set"
-            android:textColor="#fafafa"
-            android:layout_marginRight="30sp"
-            android:layout_marginLeft="25sp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Set Value"
-            android:textColor="#fafafa"
-            android:layout_marginLeft="25sp"
-            />
-        </TableRow>
-
-        <TableRow
             android:id="@+id/tbRow2"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
             >
 
         <Button
             android:id="@+id/showSet"
-            android:layout_width="wrap_content"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:text="SET"
             android:textColor="#fafafa"
@@ -94,7 +72,7 @@
             android:layout_marginRight="7sp"/>
         <Button
             android:id="@+id/showSetValue"
-            android:layout_width="wrap_content"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:textColor="#fafafa"
             android:text="SET Value"
@@ -102,15 +80,14 @@
             android:background="@drawable/button_bg"/>
         </TableRow>
     </LinearLayout>
-
     <LinearLayout
+        android:id="@+id/tbLayout"
         android:layout_width="260dp"
-        android:layout_height="150dp"
-        android:layout_below="@id/detailLayout"
+        android:layout_height="127dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        android:background="@drawable/container">
-
+        android:background="@drawable/tb_layout_bg"
+        android:layout_below="@+id/detailLayout">
         <TableLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
@@ -123,10 +100,39 @@
 
                 <!-- Add elements/columns in the first row-->
                 <Button
+                    android:id="@+id/tvToday2D"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/tb_layout_btn_bg"
+                    android:text="Today"
+                    android:layout_marginLeft="10dp"
+                    android:textAllCaps="false"
+                    android:textColor="#fafafa" />
+
+                <Button
+                    android:id="@+id/showToday2DValue"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/tb_layout_btn_bg"
+                    android:text="2D"
+                    android:layout_marginLeft="10dp"
+                    android:textAllCaps="false"
+                    android:textColor="#fafafa" />
+
+            </TableRow>
+            <TableRow
+                android:id="@+id/row2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:collapseColumns="0">
+
+                <!-- Add elements/columns in the first row-->
+                <Button
                     android:id="@+id/tvYesterday2D"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/button_bg"
+                    android:background="@drawable/tb_layout_btn_bg"
                     android:text="Yesterday"
                     android:layout_marginLeft="10dp"
                     android:textAllCaps="false"
@@ -136,7 +142,7 @@
                     android:id="@+id/showYesterday2DValue"
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/button_bg"
+                    android:background="@drawable/tb_layout_btn_bg"
                     android:text="2D"
                     android:layout_marginLeft="10dp"
                     android:textAllCaps="false"
@@ -144,7 +150,37 @@
 
             </TableRow>
         </TableLayout>
+</LinearLayout>
 
-    </LinearLayout>
+    <Button
+        android:id="@+id/refresh"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/tb_layout_btn_bg"
+        android:text="REFRESH"
+        android:layout_centerHorizontal="true"
+        android:textAllCaps="false"
+        android:textColor="#fafafa"
+        android:layout_below="@+id/tbLayout"
+        android:layout_marginTop="15dp"
+        android:onClick="refresh"/>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_centerInParent="true"
+        android:visibility="invisible"/>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        app:fabSize="normal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="16dp"
+        android:src = "@mipmap/ic_refresh"/>
+
 
 </RelativeLayout>
