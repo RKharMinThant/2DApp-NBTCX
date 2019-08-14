@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
+<<<<<<< HEAD
 <android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+=======
+
+<android.support.v4.widget.SwipeRefreshLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+>>>>>>> 71a946601dbd4db0bc504dc4a1dffbbc641b0332
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/swipeRefresh"
     android:layout_width="match_parent"
@@ -147,7 +153,11 @@
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:background="@drawable/tb_layout_btn_bg"
+<<<<<<< HEAD
                     android:text="Not Available yet"
+=======
+                    android:text="2D"
+>>>>>>> 71a946601dbd4db0bc504dc4a1dffbbc641b0332
                     android:layout_marginLeft="10dp"
                     android:textAllCaps="false"
                     android:textColor="#fafafa" />
@@ -156,6 +166,7 @@
         </TableLayout>
     </LinearLayout>
 
+<<<<<<< HEAD
     <com.google.android.gms.ads.AdView
         xmlns:ads="http://schemas.android.com/apk/res-auto"
         android:id="@+id/adView"
@@ -167,6 +178,8 @@
         ads:adUnitId="ca-app-pub-9687700655895649/6590070330"
         />
 
+=======
+>>>>>>> 71a946601dbd4db0bc504dc4a1dffbbc641b0332
 </RelativeLayout>
 </android.support.v4.widget.SwipeRefreshLayout>
 

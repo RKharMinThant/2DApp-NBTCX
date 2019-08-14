@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+<<<<<<< HEAD
 import android.widget.Toast;
 
 import com.google.android.gms.ads.AdListener;
@@ -19,6 +20,8 @@ import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.MobileAds;
+=======
+>>>>>>> 71a946601dbd4db0bc504dc4a1dffbbc641b0332
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -35,12 +38,21 @@ public class MainActivity extends AppCompatActivity {
     Button showSet;
     Button showSetValue;
     Button showToday2DValue,showYesterday2DValue;
+<<<<<<< HEAD
     SwipeRefreshLayout mySwipeRefreshLayout;
     AdView myAdView;
 
     private String link = "https://marketdata.set.or.th/mkt/marketsummary.do?language=en&country=US";
     private String TwoDValue;
     private int refTime;
+=======
+    Button refresh;
+    ProgressBar pg;
+    SwipeRefreshLayout mySwipeRefreshLayout;
+
+    private String link = "https://marketdata.set.or.th/mkt/marketsummary.do?language=en&country=US";
+    private String TwoDValue;
+>>>>>>> 71a946601dbd4db0bc504dc4a1dffbbc641b0332
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
         showToday2DValue = findViewById(R.id.showToday2DValue);
         showYesterday2DValue = findViewById(R.id.showYesterday2DValue);
          mySwipeRefreshLayout = findViewById(R.id.swipeRefresh);
+<<<<<<< HEAD
          myAdView = findViewById(R.id.adView);
         //FloatingActionButton fab = findViewById(R.id.fab);
 
@@ -68,6 +81,13 @@ public class MainActivity extends AppCompatActivity {
         myAdView.loadAd(myAdReq);
 
         //getting date and format to day names only
+=======
+        //FloatingActionButton fab = findViewById(R.id.fab);
+
+        ActionBar ab = getSupportActionBar();
+        ab.hide();
+
+>>>>>>> 71a946601dbd4db0bc504dc4a1dffbbc641b0332
         Calendar calendar = Calendar.getInstance();
         String[] days = new String[] { "Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday" };
         String day = days[calendar.get(Calendar.DAY_OF_WEEK)];
@@ -80,16 +100,22 @@ public class MainActivity extends AppCompatActivity {
                 new SwipeRefreshLayout.OnRefreshListener() {
                     @Override
                     public void onRefresh() {
+<<<<<<< HEAD
                         refTime++;
+=======
+>>>>>>> 71a946601dbd4db0bc504dc4a1dffbbc641b0332
                         showTwoD.setText("2D");
                         showSet.setText("SET");
                         showSetValue.setText("SET VALUE");
 
                         new fetchData().execute(link);
+<<<<<<< HEAD
                         if(refTime >= 2) {
                             showInterstitial();
                             refTime = 0;
                         }
+=======
+>>>>>>> 71a946601dbd4db0bc504dc4a1dffbbc641b0332
                     }
                 }
         );
@@ -109,6 +135,7 @@ public class MainActivity extends AppCompatActivity {
         return a.substring(lastIndex,strLength);
     }
 
+<<<<<<< HEAD
     //AD
     private void showInterstitial(){
         MobileAds.initialize(this,"ca-app-pub-9687700655895649~8028588167");
@@ -140,6 +167,8 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+=======
+>>>>>>> 71a946601dbd4db0bc504dc4a1dffbbc641b0332
     private class fetchData extends AsyncTask<String, Void, ArrayList<String>> {
 
         @Override
@@ -170,6 +199,7 @@ public class MainActivity extends AppCompatActivity {
             TwoDValue = getPrefix(arrayList.get(1)) + getLast(arrayList.get(7));
             showTwoD.setText(TwoDValue);
 
+<<<<<<< HEAD
             //showing today value
             showToday2DValue.setText(TwoDValue);
 
@@ -182,13 +212,29 @@ public class MainActivity extends AppCompatActivity {
 
             int stored2dValue = sp.getInt("Today2D", 0);
             if (stored2dValue != Integer.parseInt(TwoDValue)) {
+=======
+            //storing 2D value
+            // for showing 2D from yesterday not perfect
+            SharedPreferences sp = getSharedPreferences("2D", 0);
+            SharedPreferences.Editor spEdit = sp.edit();
+            spEdit.putString("Today2D", TwoDValue);
+            spEdit.apply();
+
+            String stored2dValue = sp.getString("Today2D", "");
+            if (stored2dValue.equals(TwoDValue)) {
+>>>>>>> 71a946601dbd4db0bc504dc4a1dffbbc641b0332
                 showToday2DValue.setText(TwoDValue);
                 showYesterday2DValue.setText("Off Day");
             } else {
                 showToday2DValue.setText(TwoDValue);
+<<<<<<< HEAD
                 showYesterday2DValue.setText(String.valueOf(stored2dValue));
             }
             */
+=======
+                showYesterday2DValue.setText(stored2dValue);
+            }
+>>>>>>> 71a946601dbd4db0bc504dc4a1dffbbc641b0332
         }
     }
 }
