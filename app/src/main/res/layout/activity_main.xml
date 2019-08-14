@@ -147,7 +147,7 @@
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:background="@drawable/tb_layout_btn_bg"
-                    android:text="2D"
+                    android:text="Not Available yet"
                     android:layout_marginLeft="10dp"
                     android:textAllCaps="false"
                     android:textColor="#fafafa" />

@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
     private String link = "https://marketdata.set.or.th/mkt/marketsummary.do?language=en&country=US";
     private String TwoDValue;
+    private int refTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,13 +80,16 @@ public class MainActivity extends AppCompatActivity {
                 new SwipeRefreshLayout.OnRefreshListener() {
                     @Override
                     public void onRefresh() {
+                        refTime++;
                         showTwoD.setText("2D");
                         showSet.setText("SET");
                         showSetValue.setText("SET VALUE");
 
                         new fetchData().execute(link);
-
-                        showInterstitial();
+                        if(refTime >= 2) {
+                            showInterstitial();
+                            refTime = 0;
+                        }
                     }
                 }
         );
@@ -121,7 +125,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onAdLoaded() {
                 interstitialAd.show();
-                Toast.makeText(getApplicationContext(),"Ad Loaded !",Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -167,21 +170,25 @@ public class MainActivity extends AppCompatActivity {
             TwoDValue = getPrefix(arrayList.get(1)) + getLast(arrayList.get(7));
             showTwoD.setText(TwoDValue);
 
+            //showing today value
+            showToday2DValue.setText(TwoDValue);
+
             //storing 2D value
             // for showing 2D from yesterday not perfect
-            SharedPreferences sp = getSharedPreferences("2D", 0);
+            /*SharedPreferences sp = getSharedPreferences("2D", 0);
             SharedPreferences.Editor spEdit = sp.edit();
-            spEdit.putString("Today2D", TwoDValue);
+            spEdit.putInt("Today2D", Integer.parseInt(TwoDValue));
             spEdit.apply();
 
-            String stored2dValue = sp.getString("Today2D", "");
-            if (stored2dValue.equals(TwoDValue)) {
+            int stored2dValue = sp.getInt("Today2D", 0);
+            if (stored2dValue != Integer.parseInt(TwoDValue)) {
                 showToday2DValue.setText(TwoDValue);
                 showYesterday2DValue.setText("Off Day");
             } else {
                 showToday2DValue.setText(TwoDValue);
-                showYesterday2DValue.setText(stored2dValue);
+                showYesterday2DValue.setText(String.valueOf(stored2dValue));
             }
+            */
         }
     }
 }
