@@ -1,7 +1,12 @@
 package com.nobletecx.a2dapp;
 
+import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Handler;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -41,6 +46,8 @@ public class MainActivity extends AppCompatActivity {
     private String link = "https://marketdata.set.or.th/mkt/marketsummary.do?language=en&country=US";
     private String TwoDValue;
     private int refTime;
+    private int refTimeForAutoRef;
+    private Handler handler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,8 +81,9 @@ public class MainActivity extends AppCompatActivity {
         //show day from date
         showDate.setText(day);
 
-        new fetchData().execute(link);
+        refDataEveryMinute();
 
+        //When Swipe up refresh is activated
         mySwipeRefreshLayout.setOnRefreshListener(
                 new SwipeRefreshLayout.OnRefreshListener() {
                     @Override
@@ -86,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
                         showSetValue.setText("SET VALUE");
 
                         new fetchData().execute(link);
-                        if(refTime >= 2) {
+                        if(refTime >= 3) {
                             showInterstitial();
                             refTime = 0;
                         }
@@ -94,7 +102,29 @@ public class MainActivity extends AppCompatActivity {
                 }
         );
     }
-    //getting last from fetched value
+
+    // This method will refresh data for every 1 minute
+    //and show interstitial every 3 times auto refresh
+    public void refDataEveryMinute(){
+        new fetchData().execute(link);
+        handler.postDelayed(run,60000);
+
+    }
+
+    Runnable run = new Runnable(){
+        @Override
+        public void run(){
+            refDataEveryMinute();
+            refTimeForAutoRef++;
+            if(refTimeForAutoRef >= 5
+            ) {
+                showInterstitial();
+                refTimeForAutoRef = 0;
+            }
+        }
+    };
+
+    //getting postfix from fetched value
     public String getLast(String prefix){
         String a = prefix.replaceAll(",","");
         int index = a.indexOf(".");
@@ -109,7 +139,31 @@ public class MainActivity extends AppCompatActivity {
         return a.substring(lastIndex,strLength);
     }
 
-    //AD
+    //show NobleTecX Page
+    public void showNBTCXPage(View view){
+        Intent facebookIntent = new Intent(Intent.ACTION_VIEW);
+        String facebookUrl = getFacebookPageURL(this);
+        facebookIntent.setData(Uri.parse(facebookUrl));
+        startActivity(facebookIntent);
+    }
+    public String getFacebookPageURL(Context context) {
+        String FACEBOOK_URL = "https://www.facebook.com/nobletecx";
+        String FACEBOOK_PAGE_ID = "687395294951613";
+
+        PackageManager packageManager = context.getPackageManager();
+        try {
+            int versionCode = packageManager.getPackageInfo("com.facebook.katana", 0).versionCode;
+            if (versionCode >= 3002850) { //newer versions of fb app
+                return "fb://facewebmodal/f?href=" + FACEBOOK_URL;
+            } else { //older versions of fb app
+                return "fb://page/" + FACEBOOK_PAGE_ID;
+            }
+        } catch (PackageManager.NameNotFoundException e) {
+            return FACEBOOK_URL; //normal web url
+        }
+    }
+
+    //Interstitial AD
     private void showInterstitial(){
         MobileAds.initialize(this,"ca-app-pub-9687700655895649~8028588167");
         final InterstitialAd interstitialAd = new InterstitialAd(this);
@@ -165,13 +219,14 @@ public class MainActivity extends AppCompatActivity {
             super.onPostExecute(arrayList);
             mySwipeRefreshLayout.setRefreshing(false);
 
-            showSet.setText("SET : "+arrayList.get(1));
-            showSetValue.setText("Value : "+arrayList.get(7));
+            showSet.setText("SET\n"+arrayList.get(1));
+            showSetValue.setText("Value\n"+arrayList.get(7));
             TwoDValue = getPrefix(arrayList.get(1)) + getLast(arrayList.get(7));
             showTwoD.setText(TwoDValue);
 
             //showing today value
             showToday2DValue.setText(TwoDValue);
+
 
             //storing 2D value
             // for showing 2D from yesterday not perfect

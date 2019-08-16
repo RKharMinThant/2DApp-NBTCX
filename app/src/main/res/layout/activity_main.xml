@@ -146,9 +146,9 @@
                     android:id="@+id/showYesterday2DValue"
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/tb_layout_btn_bg"
-                    android:text="Not Available yet"
                     android:layout_marginLeft="10dp"
+                    android:background="@drawable/tb_layout_btn_bg"
+                    android:text="Not Available"
                     android:textAllCaps="false"
                     android:textColor="#fafafa" />
 
@@ -166,6 +166,19 @@
         ads:adSize="BANNER"
         ads:adUnitId="ca-app-pub-9687700655895649/6590070330"
         />
+
+    <TextView
+        android:id="@+id/tvNbtcx"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tbLayout"
+        android:layout_marginTop="15dp"
+        android:layout_centerHorizontal="true"
+        android:textSize="15sp"
+        android:textColor="#636FA4"
+        android:background="@drawable/gradient_bg"
+        android:text="Powered by NobleTecX"
+        android:onClick="showNBTCXPage"/>
 
 </RelativeLayout>
 </android.support.v4.widget.SwipeRefreshLayout>
